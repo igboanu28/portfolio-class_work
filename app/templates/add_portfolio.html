@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form, render_field %}
+
+{% block app_content %}
+
+      <form action = "/add_portfolio" method = "POST" 
+         enctype = "multipart/form-data">
+
+         
+         <input type = "file" name="file" />
+         <input type = "text" name="name" value="name"/>
+         <input type = "text" name="urls" value="urls"/>
+
+         <input type = "submit"/>
+      </form>
+
+
+
+{% endblock %}

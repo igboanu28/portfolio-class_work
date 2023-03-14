@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form, render_field %}
+
+{% block app_content %}
+<h1>Edit Portfolio</h1>
+<form action="/edit_portfolio/{{edits.id}}" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+      {{ 
+          render_field(form.name,size=32,value=edits.name) }}<br>
+      {% for error in form.name.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+  </p>
+  <p>
+      {{ 
+          render_field(form.urls,size=32,value=edits.urls) }}<br>
+      {% for error in form.urls.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+  </p>
+  <p>{{ render_field(form.submit) }}</p>
+
+</form>
+
+      <form action = "url_for('change_images',id=change.id)" method = "POST" 
+         enctype = "multipart/form-data">
+
+         
+         <input type = "file" name="file" />
+        
+         <input type = "submit"/>
+      </form>
+
+
+
+{% endblock %}

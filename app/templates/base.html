@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+ 
+    
+    {% block styles %}
+        <!-- Bootstrap CSS -->
+        {{ bootstrap.load_css() }}
+        {% endblock %}
+    <title>Portfolio</title>
+    {% endblock %}
+</head>
+<body>
+    {% block navbar %}
+    {% from 'bootstrap5/nav.html' import render_nav_item %}
+    <nav class="navbar bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('home') }}">Portfolio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="{{ url_for('home') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Home
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#home">Home</a></li>
+                  <li><a class="dropdown-item" href="#about">About</a></li>
+                  <li><a class="dropdown-item" href="#portfolio">Portfolio</a></li>
+                  <li><a class="dropdown-item" href="#testmonial">Testmonial</a></li>
+                  
+                </ul>
+              </li>
+         {% if current_user.is_anonymous %}
+
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ url_for('login') }}">Login</a>
+              </li>
+            {% else %}
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('user_dashboard', username=current_user.username) }}">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+              </li>
+              {% endif %}
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    {% endblock %}
+
+    {% block content %}
+            <div class="container">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-info" role="alert">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+        
+                {# application content needs to be provided in the app_content block #}
+                {% block app_content %}{% endblock %}
+            </div>
+<footer id="footer">
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <div class="me-5 d-none d-lg-block ">
+        <span>Get in touch with me:</span>
+      </div>
+     
+    </section>
+  
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <div class="row mt-3">
+        
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold mb-4">
+              Programming Languages i know
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Angular</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Python</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Css</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">HTML</a>
+            </p>
+            <p>
+                <a href="#!" class="text-reset">JavaScript</a>
+              </p>
+          </div>
+  
+  
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p><i class="fas fa-home me-3"></i> Nigeria</p>
+            <p>
+                <a href = "mailto: igboanuuchenna@gmail.com
+                ">
+              <i class="fas fa-envelope me-3"></i>
+
+              igboanuuchenna@gmail.com
+            </a>
+        </p>
+            <p>
+                <a href="tel:+234 815 5472 909">
+                <i class="fas fa-phone me-3"></i> +234 815 5472 909
+            </a>
+            </p>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+  
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2023 Copyright:  Uche   
+    <!-- Copyright -->
+  </footer>
+{% endblock %}
+
+    {% block scripts %}
+    <!-- Optional JavaScript -->
+    {{ bootstrap.load_js() }}
+{% endblock %}
+</body>
+</html>

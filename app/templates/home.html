@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% from 'bootstrap5/form.html' import render_form, render_field %}
+
+{% block app_content %}
+
+
+<section id="home" class="header sections">
+<div class="container">
+    <div class="info">
+    <h5>Hello, I'm</h5>
+    <h1 class="title">Igboanu uchenna</h1>
+    <p>Am a Web Developer</p>
+    <div>
+    <button class="btn btn-dark rounded">Download CV</button>
+</div>
+</div>
+<div class="home_imgs">
+  <img class="home_img" src="/uploads/f.JPG">
+</div>
+</div>
+</section>
+<section id="about" class="sections">
+<h1 class="about-me-title">About me</h1>
+  <div class="container">
+    <div class="d-flex flex-row bd-highlight">
+    
+      <div class="p-2 bd-highlight">
+        <img class="img-thumbnail" src="/uploads/e.webp">
+      </div>
+      <div class="p-2 bd-highlight about_text">
+      <h3>Igboanu uchenna</h3>
+      <p>Web Developer</p>
+      <p>My name is Igboanu Uchenna i have been practicing programming for some years now.
+      This is my frist Portfolio site  </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+        Enim, eius, nam. Quo praesentium qui temporibus voluptatum,
+        facilis aliquid eligendi fugiat beatae neque inventore non.
+        Laborum repellendus consequatur ullam voluptatum asperiores.
+        <a class="btn btn-dark rounded" href="{{url_for('download')}}">Download</a>
+            </p>
+    </div>
+  
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" class="sections">
+  <div class="container text-center ">
+    
+    <h5 class="subtitle">Portfolio</h5>
+    <h2 class="section-title">Check Out my Wonderful Works</h2>
+    <div class="row">
+      {%for uploads in view%}
+
+      <div class="col-md-4">
+      <div class="img-po">
+        <img class="img-thumbnail" src="/uploads/{{uploads.image_file}}">
+        <p>{{uploads.name}}</p>
+        <a href="{{uploads.urls}}" class="btn btn-dark rounded">Click to see</a>
+
+      </div>
+    </div>
+    
+  {%endfor%}
+
+  </div>
+  </div>
+</section>
+
+<section id="testmonial" class="sections">
+  <div class="container text-center">
+    <h6 class="subtitle">Testmonial</h6>
+    <h5 class="section-title">What people say about me</h5>
+    <p>eius, nam. Quo praesentium qui temporibus voluptatum,
+      facilis aliquid eligendi fugiat beatae neque inventore non.
+      Laborum repellendus consequatur ullam voluptatum asperiores.
+    </p>
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <div class="card testmonial-card border">
+          <div class="card-body">
+          <img src="/uploads/e.jpg" alt="...">
+          <p>eius, nam. Quo praesentium qui temporibus voluptatum,
+            facilis aliquid eligendi fugiat beatae neque inventore non.
+            Laborum repellendus consequatur ullam voluptatum asperiores.
+          </p>
+          <h1 class="title">Chain Smokers</h1>
+          <h1 class="subtitle">Front-End</h1>
+
+          </div>
+        </div>
+      </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <div class="card testmonial-card border">
+            <div class="card-body">
+            <img src="/uploads/m.JPG" alt="...">
+            <p>eius, nam. Quo praesentium qui temporibus voluptatum,
+              facilis aliquid eligendi fugiat beatae neque inventore non.
+              Laborum repellendus consequatur ullam voluptatum asperiores.
+            </p>
+            <h1 class="title">Hotake Kakashi</h1>
+            <h1 class="subtitle">Web Designer</h1>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card testmonial-card border">
+            <div class="card-body">
+            <img src="/uploads/i.JPG" alt="...">
+            <p>eius, nam. Quo praesentium qui temporibus voluptatum,
+              facilis aliquid eligendi fugiat beatae neque inventore non.
+              Laborum repellendus consequatur ullam voluptatum asperiores.
+            </p>
+            <h1 class="title">Marsh Paul</h1>
+            <h1 class="subtitle">Web Designer</h1>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    </div>
+</section>
+
+{% endblock %}

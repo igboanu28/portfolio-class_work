@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<table>
+    <tr valign="top">
+    
+        <td><img src="{{ user.avatar(128) }}"></td>
+        <td>
+            <h1>User: {{ user.username }}</h1>
+            {% if user.about_me %}
+            <p>{{ user.about_me }}</p>
+            {% endif %}
+            {% if user.last_seen %}
+            <p>Last seen on: {{ user.last_seen }}</p>
+            {% endif %}
+        </td>
+</tr>
+</table>
+
+<hr>
+    {% if user == current_user %}
+
+    <p><a href="{{ url_for('add_portfolio') }}">Add your portfolio</a></p>
+    <p><a href="{{ url_for('edit_portfolio',id=current_user.id) }}">Edit your portfolio</a></p>
+
+    {% endif %}
+<hr>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+{%for uploads in view%}
+
+  <div class="col">
+
+<div class="card h-100">
+  <img src="/uploads/{{uploads.image_file}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Admin portfolio</h5>
+    <p class="card-text">A short view for the adimin to edits</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">id_number: {{uploads.id}}</li>
+    <li class="list-group-item">Portfolio_name: {{uploads.name}}</li>
+    <li class="list-group-item">Portfolio_link: {{uploads.urls}}</li>
+    <li class="list-group-item">Date_posted: {{uploads.date_posted}}</li>
+
+  </ul>
+  <div class="card-body">
+    <a href="/edit_portfolio/{{uploads.id}}" class="btn btn-outline-secondary btn-sm">Click to update</a>
+    <a href="/delete/{{uploads.id}}" class="btn btn-outline-secondary btn-sm">Delete</a>
+    <a href="{{ url_for('change_images',id=uploads.id) }}" class="btn btn-outline-secondary btn-sm">change_image</a>
+  </div>
+</div>
+</div>
+
+
+
+
+{%endfor%}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form, render_field %}
+
+{% block app_content %}
+
+      <form action = "{{ url_for('change_images',id=change.id) }}" method = "POST" 
+         enctype = "multipart/form-data">
+
+         
+         <input type = "file" name="file" />
+         <input type = "submit"/>
+      </form>
+
+
+
+{% endblock %}
