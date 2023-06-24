@@ -80,24 +80,6 @@ def user_dashboard(username):
     user = User.query.filter_by(username=username).first_or_404()
     return render_template('dashboard.html', user=user, view=view)
 
-# @app.route('/add_portfolio', methods=['GET', 'POST'])
-# @login_required
-# def add_portfolio():
-#     if request.method == 'POST':
-#         portfolio_file = request.files['file']
-
-     
-#         filename =secure_filename(portfolio_file.filename)
-
-#         adding_portfolio= Portfolio(image_file=portfolio_file.read(), name=filename, user_id=current_user.id)
-    
-#         db.session.add(adding_portfolio)
-#         db.session.commit()
-
-#         flash('file uploaded successfully')
-
-#         return render_template('s.html')
-#     return render_template('add_portfolio.html')
 
 UPLOAD_FOLDER = "/home/paul/Desktop/my portfolio/app/static/uploads"
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
@@ -186,7 +168,7 @@ def delete(id):
     flash('You have successfully deleted your item')
     return redirect(url_for('user_dashboard', username=current_user.username))
 
-@app.route('/download')
+@app.route('/download') 
 def download():
     path = '/home/paul/Desktop/all/Modern Python Cookbook - Second Edition_01.pdf'
     return send_file(path, as_attachment=True)
